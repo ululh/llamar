@@ -2,7 +2,7 @@ from llama_index import SimpleDirectoryReader
 from llama_index.node_parser import SimpleNodeParser
 from llama_index.schema import IndexNode
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
-from llama_index import LangchainEmbedding
+from llama_index.embeddings import LangchainEmbedding
 from llama_index.llms import LlamaCPP
 from llama_index.llms.llama_utils import messages_to_prompt, completion_to_prompt
 from llama_index import ServiceContext
@@ -22,8 +22,6 @@ documents = SimpleDirectoryReader(
 node_parser = SimpleNodeParser.from_defaults(chunk_size=500)
 base_nodes = node_parser.get_nodes_from_documents(documents)
 
-storage_context.persist(persist_dir="./persist")
-
 # Name or path to sentence-transformers embedding model.
 #  - Multilingual: paraphrase-multilingual-mpnet-base-v2, paraphrase-multilingual-MiniLM-L12-v2
 #  - French: dangvantuan/sentence-camembert-base, dangvantuan/sentence-camembert-large
@@ -40,14 +38,13 @@ embedding_model = LangchainEmbedding(HuggingFaceEmbeddings(
 # https://huggingface.co/TheBloke/Vigogne-2-7B-Chat-GGUF
 LLM_MODEL_NAME = "https://huggingface.co/TheBloke/Vigogne-2-7B-Chat-GGUF/resolve/main/vigogne-2-7b-chat.Q5_K_M.gguf"
 
-
 print(f"Chargement du modéle LLM: {LLM_MODEL_NAME} ...")
 
 llm = LlamaCPP(
     # You can pass in the URL to a GGML/GGUF model to download it automatically
-    model_url=LLM_MODEL_NAME,
+    #model_url=LLM_MODEL_NAME,
     # optionally, you can set the path to a pre-downloaded model instead of mo-del_url
-    model_path=None,
+    model_path="./vigogne-2-7b-chat.Q5_K_M.gguf",
     temperature=0.1,
     max_new_tokens=1024,
     generate_kwargs={},
@@ -71,6 +68,7 @@ vectorstore_index = VectorStoreIndex(
 )
 print("Sauvegarde de la base de données vectorielle")
 vectorstore_index.storage_context.persist(persist_dir='llama_index')
+print("Sauvegardée")
 
 text_qa_template_str = (
   "<|system|>: Vous êtes un assistant IA qui répond à la question posée à la fin en utilisant le contexte suivant. Si vous ne connaissez pas la réponse, dites simplement que vous ne savez pas, n'essayez pas d'inventer une réponse. Veuillez répondre exclusivement en français.\n"
