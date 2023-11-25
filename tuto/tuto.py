@@ -44,7 +44,7 @@ llm = LlamaCPP(
     # You can pass in the URL to a GGML/GGUF model to download it automatically
     #model_url=LLM_MODEL_NAME,
     # optionally, you can set the path to a pre-downloaded model instead of mo-del_url
-    model_path="./vigogne-2-7b-chat.Q5_K_M.gguf",
+    model_path="../model/vigogne-2-7b-chat.Q5_K_M.gguf",
     temperature=0.1,
     max_new_tokens=1024,
     generate_kwargs={},
