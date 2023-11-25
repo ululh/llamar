@@ -9,9 +9,12 @@ install:
 	pip install langchain
 
 get_model:
-	if [ ! -f model/vigogne-2-7b-chat.Q5_K_M.gguf ]
-	then 
-		wget https://huggingface.co/TheBloke/Vigogne-2-7B-Chat-GGUF/resolve/main/vigogne-2-7b-chat.Q5_K_M.gguf
-		mv vigogne-2-7b-chat.Q5_K_M.gguf model/
+	if [ ! -f model/vigogne-2-7b-chat.Q5_K_M.gguf ]; then \
+		wget https://huggingface.co/TheBloke/Vigogne-2-7B-Chat-GGUF/resolve/main/vigogne-2-7b-chat.Q5_K_M.gguf; \
+		mv vigogne-2-7b-chat.Q5_K_M.gguf model/; \
+	fi
+	if [ ! -f model/vigogne-2-7b-chat.Q8_0.gguf ]; then \
+		wget https://huggingface.co/TheBloke/Vigogne-2-7B-Chat-GGUF/resolve/main/vigogne-2-7b-chat.Q8_0.gguf; \
+		mv vigogne-2-7b-chat.Q8_0.gguf model/; \
 	fi
 
