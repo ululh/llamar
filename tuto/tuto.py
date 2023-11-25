@@ -91,10 +91,12 @@ query_engine = vectorstore_index.as_query_engine(
 
 questions = [ 
               "Qui est l'inventeur de la courge au fromage ?",
-              "Tout le monde est d'accord ?"
+              "Tout le monde est d'accord ?",
+              "Qui a un sabre laser ?"
             ]
 
 for question in questions:
     print(f'Question: {question}')
     response = query_engine.query(question)
     print(f'Réponse: {response}')
+    print()
