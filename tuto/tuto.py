@@ -89,10 +89,12 @@ query_engine = vectorstore_index.as_query_engine(
 )
 
 
-response = query_engine.query("Qui est l’auteur de TutoPlot ? Quelle est sa couleur préférée ?")
-print("Question: Qui est l’auteur de TutoPlot ? Quelle est sa couleur préférée ?")
-print(f"Reponse: {response}")
+questions = [ 
+              "Qui est l'inventeur de la courge au fromage ?",
+              "Tout le monde est d'accord ?"
+            ]
 
-response = query_engine.query("Pourquoi JupyterTutoGoCrash est-il obsolète ?")
-print("Question: Pourquoi JupyterTutoGoCrash est-il obsolète ?")
-print(f"Reponse: {response}")
+for question in questions:
+    print(f'Question: {question}')
+    response = query_engine.query(question)
+    print(f'Réponse: {response}')

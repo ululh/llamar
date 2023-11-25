@@ -1,1 +1,1 @@
-« JupyterTutoGoCrash » est le nom d'un package Python permettant de créer des notebooks Jupyter non maintenables. Ce package n'est plus activement développé et est désormais considéré comme obsolète. En effet les développeurs se sont rendu compte que les exigences de sécurité des environnements Jupyter empêchais ce package de fonctionner.
+D'aucuns prétendent que la courge au fromage a été en fait inventée par Luc Skywalker, utilisant les propriétés quantiques de son sabre laser.
